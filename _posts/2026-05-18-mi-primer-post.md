@@ -9,4 +9,4 @@ tags: [jekyll, github, blog]
 
 Este es mi primer post en mi blog.
 
-Estoy aprendiendo GitHub y Jekyll.
+Estoy experimentando con GitHub y aprendiendo Jekyll.
