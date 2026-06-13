@@ -68,17 +68,17 @@ Se utiliza para  identificar dispositivos activos en la red y hacer un escaneo s
 
 Para este laboratorio se ejecuta: _"nmap -sn 10.0.2.0/24"_
 
-Se identificaron los dispositivos activos presentes en la red virtual.*Ver 👀 Figura 07*
+Se identificaron los dispositivos activos presentes en la red virtual. *Ver 👀 Figura 07*
 
 ![Importación](/assets/imag2/fig07.png)
 
 De la Figura anterior, se observa las siguientes direcciones:
 
-╰┈➤ 10.0.2.1: router virtual que implementa el VirtualBox.
+  ╰┈➤ 10.0.2.1: router virtual que implementa el VirtualBox.
 
-╰┈➤10.0.2.2: servidor DNS virtual que implementa el VirtualBox.
+  ╰┈➤10.0.2.2: servidor DNS virtual que implementa el VirtualBox.
 
-☑ Nuestro target es la dirección ip 10.0.2.15/24.
+  ☑ Nuestro target es la dirección ip 10.0.2.15/24.
 
 *1.3. Escaneo agresivo*
 
@@ -134,6 +134,8 @@ _C. Xmas Scan_
 El escaneo Xmas tampoco detectó puertos abiertos. Todos los puertos analizados fueron reportados como cerrados.
 
 ![Importación](/assets/imag2/fig12.png)
+_Identificación del sistema operativo a través de su reacción._
+
 
 *1.4. Confirmación de Firewall Activo*
 
@@ -340,7 +342,7 @@ Se usa _scp_ para que los archivos sean descargados exitosamente en Kali Linux p
 ![Importación](/assets/imag2/fig36.png)
 
 
-### Etapa 7️⃣﹕
+### Etapa 7️⃣﹕Extracción de Hashes
 
 La herramienta _samdump2_ permite procesar los archivos SAM y SYSTEM de Windows para recuperar los hashes NTLM de las cuentas locales.
 
