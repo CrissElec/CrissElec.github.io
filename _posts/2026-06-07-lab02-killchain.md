@@ -13,7 +13,7 @@ El presente laboratorio tiene como finalidad comprender y documentar las diferen
 
 🖥️💻
 
-Metasploitable en VirtualBox es       utlizada como la máquina objetivo, la cual contiene vulnerabilidades incorporadas para fines educativos y de entrenamiento en ciberseguridad.
+Metasploitable en VirtualBox es utlizada como la máquina objetivo, la cual contiene vulnerabilidades incorporadas para fines educativos y de entrenamiento en ciberseguridad.
 
 🌐📡📶
 
@@ -49,20 +49,20 @@ Antes de iniciar se creó una instantánea (Snapshot) de la máquina virtual Met
 
 Es la recopilación y analisis de información de la maquina objetivo antes de la intrusión. 
 
-*1.1. Configuración del Segmento de Red*
+#### 1.1. Configuración del Segmento de Red
 
-En la VM Kali se ejecuta el comando *ip a* para ver la IP asignada para la interfaz eth0. Como se 👁️‍🗨️ observa a continuación: .
+En la VM Kali se ejecuta el comando **_ip a_** para ver la IP asignada para la interfaz eth0. Como se 👁️‍🗨️ observa a continuación: .
 
 ![Importación](/assets/imag2/fig05.png)
 _Figura 05. La VM de Kali Linux tiene la dirección 10.0.2.3/24_
 
-Ahora, para conocer la dirección IP del metasplotable, ejecutamos ipconfig. 
+Ahora, para conocer la dirección IP de metasplotable, ejecutamos ipconfig. 
 
 ![Importación](/assets/imag2/fig06.png)
 _Figura 06. La VM de Metasploitable tiene la dirección 10.0.2.15/24_
 
 
-*1.2. Comando de Escaneo Inicial con Nmap*
+#### 1.2. Comando de Escaneo Inicial con Nmap
 
 Se utiliza para  identificar dispositivos activos en la red y hacer un escaneo sin resolución de dominio.
 
@@ -80,7 +80,7 @@ De la Figura anterior, se observa las siguientes direcciones:
 
   ☑ Nuestro target es la dirección ip 10.0.2.15/24.
 
-*1.3. Escaneo agresivo*
+#### 1.3. Escaneo agresivo
 
 Se realizó un escaneo agresivo utilizando **Nmap** sobre la máquina objetivo. El parámetro -A permitió detectar versiones de servicios, sistema operativo y ejecutar scripts de reconocimiento. El parámetro -p- permitió analizar la totalidad de los puertos TCP disponibles en el sistema objetivo. *Ver 👀 Figuras 08*
 
@@ -95,31 +95,29 @@ Se realizó un escaneo agresivo utilizando **Nmap** sobre la máquina objetivo. 
 ![Importación](/assets/imag2/fig08h.png)
 ![Importación](/assets/imag2/fig08i.png)
 
-A parte del escaneo agresivo, existen otros métodos clasificados por su velocidad, sigilo e intención:
+_A parte del escaneo agresivo, existen otros métodos clasificados por su velocidad, sigilo e intención:_
 
-*1. Escaneo SYN (Stealth Scan):*
+##### 1. Escaneo SYN (Stealth Scan):
 
 ![Importación](/assets/imag2/fig09.png)
 
-*2. Escaneo de UDP:*
+##### 2. Escaneo de UDP:
 
 Se realizó un escaneo UDP utilizando Nmap para identificar servicios que operan sobre dicho protocolo. A diferencia de los escaneos TCP, este procedimiento permite detectar servicios como DNS, DHCP o SNMP, que también forman parte de la superficie de ataque de la máquina objetivo.
 
 ![Importación](/assets/imag2/fig10.png)
 
 
-*3. Escaneo de Vulnerabilidades (con Scripts):* 
+##### 3. Escaneo de Vulnerabilidades (con Scripts): 
 
 El análisis se centró en los puertos 80 (HTTP) y 445 (SMB). Como resultado, se obtuvo información sobre posibles debilidades de seguridad que podrían ser aprovechadas.
 
 ![Importación](/assets/imag2/fig11.png)
 
 
-*4. Escaneos FIN, NULL o Xmas:*
+##### 4. Escaneos FIN, NULL o Xmas:
 
-Los escaneos FIN, NULL y Xmas no se usan tanto, incluye porque forman parte de las técnicas de evasión y reconocimiento. 
-
-Son escaneos TCP "no convencionales" que intentan descubrir puertos abiertos utilizando paquetes especiales.
+Los escaneos **_FIN, NULL y Xmas_** son escaneos sigilosos avanzados, que intentan descubrir puertos abiertos utilizando paquetes especiales. Pero fallan en Windows, devolviendo todos los puertos como cerrado.
 
 _A. FIN Scan_
 
@@ -137,17 +135,19 @@ El escaneo Xmas tampoco detectó puertos abiertos. Todos los puertos analizados 
 _Identificación del sistema operativo a través de su reacción._
 
 
-*1.4. Confirmación de Firewall Activo*
+#### 1.4. Confirmación de Firewall Activo
 
 Este paso es para verificar el estado del firewall de la máquina objetivo antes de iniciar las actividades del laboratorio.
 
-Sintaxis General
-traceroute <dirección_IP>
+   Sintaxis General
+   traceroute <dirección_IP>
 
-traceroute to 10.0.2.15
-1  10.0.2.15  0.xxx ms  0.xxx ms  0.xxx ms
+   traceroute to 10.0.2.15
+    10.0.2.15  0.xxx ms  0.xxx ms  0.xxx ms
+
 
 Obtenido:
+
 ![Importación](/assets/imag2/fig13.png)
 
 
@@ -163,13 +163,13 @@ Comando Ejecutado: "nmap -p 22 -sV 10.0.2.15"
 
 Se preparan las listas de usuarios y contraseñas que serán utilizadas durante las pruebas de autenticación.
 
-3.1. Descarga de diccionarios
+#### 3.1. Descarga de diccionarios
 
 Realizamos la búqueda desde una pagina de Firefox de Kali para la descarga de estos repositorios de diccionarios útiles para la ejecucion de este laboratorio:
 
-a. Lists para Usernames
-b. kyou para Passwords
-c. nashi para Passwords
+   a. Lists para Usernames
+   b. kyou para Passwords
+   c. nashi para Passwords
 
 ![Importación](/assets/imag2/fig15.png)
 
@@ -181,13 +181,13 @@ Corroboramos que contenga el usuario vagrant.
 
 ![Importación](/assets/imag2/fig17.png)
 
-3.2. Enumeración de Usuarios con Metasploit
+#### 3.2. Enumeración de Usuarios con Metasploit
 
 La enumeración de usuarios consiste en determinar qué cuentas existen en un sistema remoto. Para ello se utilizó el módulo ssh_enumusers de Metasploit, el cual permite identificar usuarios válidos a través de las respuestas generadas por el servicio SSH.
 
 ![Importación](/assets/imag2/fig18.png)
 
-a continuacion se configuran : RHOSTS y USER_FILE, como se observa:
+a continuacion se configuran : *RHOSTS y USER_FILE*, como se observa:
 
 ![Importación](/assets/imag2/fig19.png)
 
@@ -197,12 +197,12 @@ y mostramos las opciones actualizadas:
 
 *Resultado:*
 
-Es el usuario encontrado: "Vagrant"
+    Es el usuario encontrado: "Vagrant"
 
 ![Importación](/assets/imag2/fig21.png)
 
 
-3.3. Ataque de Fuerza Bruta en SSH
+#### 3.3. Ataque de Fuerza Bruta en SSH
 
 Después de la fase anterior ya sabemos que existe el usuario: "Vagrant", se procedió a realizar un ataque de fuerza bruta utilizando el módulo ssh_login de Metasploit.
 
@@ -220,7 +220,7 @@ y se muestran las opciones actualizadas:
 
 A continuación:
 
-_run:_ Ejecuta el módulo configurado.
+     _run:_ Ejecuta el módulo configurado.
 
 El módulo realizó múltiples intentos de autenticación sobre el usuario vagrant utilizando las contraseñas contenidas en el diccionario.
 
@@ -228,18 +228,20 @@ El módulo realizó múltiples intentos de autenticación sobre el usuario vagra
 
 ### Etapa 4️⃣﹕Explotación y Acceso
 
-Una vez identificadas credenciales válidas, se estableció una conexión remota mediante el protocolo SSH. Esto permitió acceder a la consola del sistema objetivo y ejecutar comandos de administración y reconocimiento interno.
+Una vez identificadas credenciales válidas, *se estableció una conexión remota mediante el protocolo SSH*. Esto permitió acceder a la consola del sistema objetivo y ejecutar comandos de administración y reconocimiento interno.
 
-Comando Ejecutado: _ssh vagrant@10.0.2.15_
+Comando Ejecutado: 
+
+            _ssh vagrant@10.0.2.15_
 
 ![Importación](/assets/imag2/fig26.png)
 
 
 ### Etapa 5️⃣﹕Extracción de Archivos SAM y SYSTEM usando vssown.vbs
 
-5.1. Comprueba los Privilegios
+#### 5.1. Comprueba los Privilegios
 
-El comando **whoami /priv** muestra los privilegios asignados al usuario actual(abversario).
+El comando **_whoami /priv_** muestra los privilegios asignados al usuario actual(abversario).
 En el laboratorio se busca verificar la presencia de privilegios como:
 
   __SeBackupPrivilege y SeRestorePrivilege__
@@ -249,9 +251,9 @@ En el laboratorio se busca verificar la presencia de privilegios como:
 Estos dos privilegios son importante para ejecutar el script de Volume Shadow Copy Service (VSS).
 
 
-5.2. Localiza el Script vssown.vbs
+#### 5.2. Localiza el Script vssown.vbs
 
-🔎 Desde la máquina Kali Linux se accedió mediante un navegador web al repositorio donde se encuentra disponible el script vssown.vbs. Para poder descargar y almacenarlo localmente para ser tranferirlo a la máquina víctima.
+🔎 Desde la máquina Kali Linux se accedió mediante un navegador web al repositorio donde se encuentra disponible el script *vssown.vbs*. Para poder descargar y almacenarlo localmente para ser tranferirlo a la máquina víctima.
 
 ![Importación](/assets/imag2/fig28.png)
 
@@ -274,7 +276,7 @@ Una vez transferido, listar el archivo _vssown.vbs_ para verificar que se encuen
 ![Importación](/assets/imag2/fig30a.png)
 
 
-5.3. ¿Qué podemos hacer con el vssown.vbs?
+#### 5.3. ¿Qué podemos hacer con el vssown.vbs?
 
 El script vssown.vbs permite interactuar con el servicio Volume Shadow Copy Service (VSS) de Windows para generar una copia de sombra del volumen C:. Esta copia contiene versiones accesibles de archivos protegidos por el sistema operativo.
 
@@ -282,7 +284,7 @@ El script vssown.vbs permite interactuar con el servicio Volume Shadow Copy Serv
 
 ![Importación](/assets/imag2/fig31a.png)
 
-5.4. Ejecuta el script _vssown.vbs_
+#### 5.4. Ejecuta el script _vssown.vbs_
 
 A. Se inicia con el servicio Volume Shadow Copy.
 
@@ -316,7 +318,7 @@ Listamos las copias de volumen shadow existentes.
 ![Importación](/assets/imag2/fig32e.png)
 ![Importación](/assets/imag2/fig32f.png)
 
-5.5. Copia los Archivos SAM y SYSTEM
+#### 5.5. Copia los Archivos SAM y SYSTEM
 
 Ahora que tenemos la ruta de la copia del volumen shadow, entrar en modo cmd y copiamos los archivos SAM y SYSTEM del volumen shadow:
 
@@ -324,9 +326,9 @@ Ahora que tenemos la ruta de la copia del volumen shadow, entrar en modo cmd y c
 
 ![Importación](/assets/imag2/fig34.png)
 
-Nota: Reemplazar HarddiskVolumeShadowCopyX con HarddiskVolumeShadowCopy1.
+_Nota: Reemplazar HarddiskVolumeShadowCopyX con HarddiskVolumeShadowCopy1_.
 
-Salimos del modo _cmd_
+          Salimos del modo _cmd_
 
 
 ### Etapa 6️⃣﹕Transferir los Archivos SAM y SYSTEM al atacante
@@ -344,27 +346,32 @@ Se usa _scp_ para que los archivos sean descargados exitosamente en Kali Linux p
 
 ### Etapa 7️⃣﹕Extracción de Hashes
 
+#### Extracción de hashes usando: _samdump2_
+
 La herramienta _samdump2_ permite procesar los archivos SAM y SYSTEM de Windows para recuperar los hashes NTLM de las cuentas locales.
 
 Para funcionar correctamente, necesita ambos archivos:
 
-SAM: contiene los hashes de las contraseñas.
-SYSTEM: contiene las claves necesarias para descifrar la información almacenada en SAM.
+    SAM: contiene los hashes de las contraseñas.
+
+   SYSTEM: contiene las claves necesarias para descifrar la información almacenada en SAM.
 
 *Comando Ejecutado* 
-  samdump2 SYSTEM SAM > hashes.txt
+
+   samdump2 SYSTEM SAM > hashes.txt
 
 ![Importación](/assets/imag2/fig37.png)
 ![Importación](/assets/imag2/fig37a.png)
 
-nota: Eliminar el historial de contraseñas previamente crackeadas por John the Ripper.
+_nota: Eliminar el historial de contraseñas previamente crackeadas por John the Ripper._
 
 Con el comando:
-  rm ~/.john/john.pot
+
+    rm ~/.john/john.pot
 
 ya que almacena contraseñas almacenadas, y si el archivo ya contiene resultados previos, John puede omitir mostrar algunas credenciales durante nuevas ejecuciones.
 
-**Crackeo de Hashes usando John the Ripper**
+#### Crackeo de Hashes usando John the Ripper
 
 De los procedimientos anteriores, obtuvimos los archivos SAM y SYSTEM desde Windows. Luego usamos samdump2 para convertir esa información en hashes de contraseñas.
 
