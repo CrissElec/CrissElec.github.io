@@ -143,4 +143,4 @@ tags: [Tacticas, SMB, MITREATT&CK]
 
 **EJECUCIÓN:** Transfiere información usando protocolos de red distintos al canal C2.
 
-**PRODUCTO:** Extrae datos del entorno comprometido.
+**PRODUCTO:** Extrae datos del entorno comprometido. Los adversarios pueden optar por ofuscar estos datos, sin utilizar cifrado, mediante protocolos de red que no están cifrados de forma nativa (como HTTP, FTP o DNS). Esto puede incluir algoritmos de codificación/compresión personalizados o disponibles públicamente (como base64), así como la incrustación de datos en los encabezados y campos del protocolo.
