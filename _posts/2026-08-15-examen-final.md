@@ -141,5 +141,40 @@ Se cargó en Metasploit el módulo exploit/unix/webapp/wp_admin_shell_upload, co
 ![Importación](/assets/imag6/fig10.png)
 
 
+CONFIGURAR LO QUE YA SE CONOCE:
 
+![Importación](/assets/imag6/fig11.png)
+
+Se configuraron la dirección del objetivo (RHOSTS=10.0.2.15) y el puerto establecido para el servicio (RPORT=80). La consulta de las opciones del módulo permitió identificar que la explotación requiere además la ruta de WordPress y credenciales válidas para autenticarse en la aplicación.
+
+
+### ACTO 4 - Acto 4 — Defensa
+
+en este Acto 4, gira alrededor de detectar y evitar una Web Shell.
+
+| Técnica ejecutada         | ¿Cómo la detectarías?                                                                                              | Mitigación                                                                                                                                                                           |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **T1505.003 — Web Shell** | Revisaría **logs del servidor web**, creación/modificación de archivos PHP y **creación de procesos** sospechosos. | **M1042 — Disable or Remove Feature or Program** y endurecimiento del servidor web: eliminar/deshabilitar funcionalidades innecesarias y restringir la subida/ejecución de archivos. |
+
+
+
+### Evidencia defensiva 1
+
+Visor de eventos (eventvwr):
+
+
+Se revisó Windows Logs → Security para identificar _eventos de seguridad_ que puedan utilizarse para investigar actividad sospechosa y correlacionarla con una posible ejecución posterior a una Web Shell.
+
+
+![Importación](/assets/imag6/fig12.png)
+
+
+### Evidencia defensiva 2
+
+
+Windows Firewall (firewall.cpl):
+
+Se observa la configuración del firewall como medida de postura de seguridad destinada a reducir la superficie de exposición y controlar comunicaciones no autorizadas.
+
+![Importación](/assets/imag6/fig13.png)
 
