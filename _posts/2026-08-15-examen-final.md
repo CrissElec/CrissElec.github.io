@@ -148,7 +148,7 @@ CONFIGURAR LO QUE YA SE CONOCE:
 Se configuraron la dirección del objetivo (RHOSTS=10.0.2.15) y el puerto establecido para el servicio (RPORT=80). La consulta de las opciones del módulo permitió identificar que la explotación requiere además la ruta de WordPress y credenciales válidas para autenticarse en la aplicación.
 
 
-### ACTO 4 - Acto 4 — Defensa
+### ACTO 4 - Defensa
 
 en este Acto 4, gira alrededor de detectar y evitar una Web Shell.
 
