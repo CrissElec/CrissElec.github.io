@@ -137,6 +137,7 @@ Se revisó el código fuente del módulo para comprender su funcionamiento. El m
 Se cargó en Metasploit el módulo exploit/unix/webapp/wp_admin_shell_upload, correspondiente al archivo asignado. Posteriormente se consultaron sus opciones para identificar los parámetros necesarios para realizar la prueba contra el WordPress objetivo.
 
 ![Importación](/assets/imag6/fig9.png)
+
 ![Importación](/assets/imag6/fig10.png)
 
 
